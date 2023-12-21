@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectCleaner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Solution Cleaner" Height="350" Width="600">
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch">Select a solution to clean (remove all ~/bin/ and ~/obj/ folders)</TextBlock>
+            <Button HorizontalAlignment="Right" Height="30" Click="AddNewSolution">
+                <TextBlock>Add solution</TextBlock>
+            </Button>
+        </StackPanel>
+
+        <ListView Grid.Row="1" Name="SolutionListView">
+            <ListView.ItemTemplate>
+                <DataTemplate DataType="local:Solution">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton GroupName="Solutions" IsChecked="{Binding IsSelected, Mode=TwoWay}">
+                            <TextBlock Text="{Binding FileName}" />
+                        </RadioButton>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button HorizontalAlignment="Center" Height="30" Click="CleanSolution">
+                <TextBlock>Clean Selected solution</TextBlock>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
