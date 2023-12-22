@@ -87,8 +87,30 @@ public partial class MainWindow : Window
     {
         foreach (var path in SolutionPaths.Where(sp => sp.IsSelected))
         {
-            Cleaner.CleanSolution(path.FilePath);
-            MessageBox.Show($"Deleted {Cleaner.DeletedFiles} files in {Cleaner.DeletedFolders} folders");
+            var cleaner = new Cleaner();
+            cleaner.CleanSolution(path.FilePath);
+            if (cleaner.ErrorMessages.Count > 0)
+            {
+                MessageBox.Show($"Deleted {cleaner.DeletedFiles} files in {cleaner.DeletedFolders} folders.\nHowever: {string.Join("\n", cleaner.ErrorMessages)}", path.FileName);
+            }
+            else
+            {
+                MessageBox.Show($"Deleted {cleaner.DeletedFiles} files in {cleaner.DeletedFolders} folders.", path.FileName);
+            }
+        }
+    }
+
+    private void RemoveSolution(object sender, RoutedEventArgs e)
+    {
+        var btn = (Button)sender;
+        var sln = btn.Tag as string;
+        if (!string.IsNullOrEmpty( sln ) )
+        {
+            var path = SolutionPaths.FirstOrDefault(sp => sp.FilePath == sln);
+            if (path != null )
+            {
+                SolutionPaths.Remove(path);
+            }
         }
     }
 }
