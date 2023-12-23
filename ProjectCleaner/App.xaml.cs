@@ -1,6 +1,5 @@
-﻿namespace ProjectCleaner;
-using System.Configuration;
-using System.Data;
+﻿namespace SolutionCleaner;
+
 using System.Windows;
 
 /// <summary>

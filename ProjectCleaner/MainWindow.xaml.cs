@@ -1,4 +1,4 @@
-﻿namespace ProjectCleaner;
+﻿namespace SolutionCleaner;
 
 using System.Collections.ObjectModel;
 using System.IO;

@@ -1,4 +1,4 @@
-﻿namespace ProjectCleaner;
+﻿namespace SolutionCleaner;
 
 internal class Solution(string filePath, string fileName, bool isSelected = false)
 {
