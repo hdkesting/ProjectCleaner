@@ -12,10 +12,15 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	  <PublishSingleFile>true</PublishSingleFile>
 	  <GenerateDocumentationFile>True</GenerateDocumentationFile>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.2</Version>
 	  <Description>Remove all bin/ and obj/ folders from selected solutions.</Description>
 	  <Copyright>(c) Hans Kesting 2024</Copyright>
+	  <ApplicationIcon>SolutionCleaner.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="SolutionCleaner.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="..\LICENSE.txt">
