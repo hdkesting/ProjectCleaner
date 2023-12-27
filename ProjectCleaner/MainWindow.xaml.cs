@@ -62,7 +62,7 @@ public partial class MainWindow : Window
 
     private void WriteSolutionPaths()
     {
-        File.WriteAllLines(configFilePath, SolutionPaths.Select(sp => string.Join(";", sp.FilePath, sp.FileName)));
+        File.WriteAllLines(configFilePath, SolutionPaths.Select(sp => string.Join(";", sp.FilePath, sp.SolutionName)));
     }
 
     private void AddNewSolution(object sender, RoutedEventArgs e)
@@ -83,21 +83,12 @@ public partial class MainWindow : Window
         WriteSolutionPaths();
     }
 
-    private void CleanSolution(object sender, RoutedEventArgs e)
+    private void CleanSolutions(object sender, RoutedEventArgs e)
     {
-        foreach (var path in SolutionPaths.Where(sp => sp.IsSelected))
-        {
-            var cleaner = new Cleaner();
-            cleaner.CleanSolution(path.FilePath);
-            if (cleaner.ErrorMessages.Count > 0)
-            {
-                MessageBox.Show($"Deleted {cleaner.DeletedFiles} files in {cleaner.DeletedFolders} folders.\nHowever: {string.Join("\n", cleaner.ErrorMessages)}", path.FileName);
-            }
-            else
-            {
-                MessageBox.Show($"Deleted {cleaner.DeletedFiles} files in {cleaner.DeletedFolders} folders.", path.FileName);
-            }
-        }
+        using var statusWindow = new StatusWindow();
+
+        statusWindow.SetSolutions(SolutionPaths.Where(sp => sp.IsSelected));
+        statusWindow.ShowDialog();
     }
 
     private void RemoveSolution(object sender, RoutedEventArgs e)

@@ -1,0 +1,47 @@
+﻿<Window x:Class="SolutionCleaner.StatusWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SolutionCleaner"
+        d:DataContext="{d:DesignInstance Type=local:SolutionCleanStatus}"
+        mc:Ignorable="d"
+        Title="Clean Status" Height="350" Width="400"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0" ItemsSource="{Binding SolutionStatuses}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Solution" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <ItemContainerTemplate>
+                                <TextBlock Text="{Binding SolutionName}"/>
+                            </ItemContainerTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="#Files" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <ItemContainerTemplate>
+                                <TextBlock Text="{Binding NumberOfDeletedFiles}" HorizontalAlignment="Right" />
+                            </ItemContainerTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="#Folders" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <ItemContainerTemplate>
+                                <TextBlock Text="{Binding NumberOfDeletedFolders}" HorizontalAlignment="Right" />
+                            </ItemContainerTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Grid.Row="1" HorizontalAlignment="Center" IsEnabled="{Binding IsFinished}" Width="100" Click="CloseWindow">
+            <TextBlock Text="Close" />
+        </Button>
+    </Grid>
+</Window>

@@ -32,7 +32,7 @@
                         <GridViewColumn.CellTemplate>
                             <ItemContainerTemplate>
                                 <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected, Mode=TwoWay}">
-                                    <TextBlock Text="{Binding FileName}" />
+                                    <TextBlock Text="{Binding SolutionName}" />
                                 </CheckBox>
                             </ItemContainerTemplate>
                         </GridViewColumn.CellTemplate>
@@ -90,7 +90,7 @@
         </ListView>
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button HorizontalAlignment="Center" Height="30" Click="CleanSolution">
+            <Button HorizontalAlignment="Center" Height="30" Click="CleanSolutions">
                 <TextBlock>Clean Selected solution</TextBlock>
             </Button>
         </StackPanel>
