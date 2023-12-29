@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SolutionCleaner"
+        xmlns:cvt="clr-namespace:SolutionCleaner.Converters"
         d:DataContext="{d:DesignInstance Type=local:SolutionCleanStatus}"
         mc:Ignorable="d"
         Title="Clean Status" Height="350" Width="400"
         >
+    <Window.Resources>
+        <cvt:CountToStringConverter x:Key="countToStringConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -26,14 +30,14 @@
                     <GridViewColumn Header="#Files" Width="100">
                         <GridViewColumn.CellTemplate>
                             <ItemContainerTemplate>
-                                <TextBlock Text="{Binding NumberOfDeletedFiles}" HorizontalAlignment="Right" />
+                                <TextBlock Text="{Binding NumberOfDeletedFiles, Converter={StaticResource countToStringConverter}}" HorizontalAlignment="Right" />
                             </ItemContainerTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="#Folders" Width="100">
                         <GridViewColumn.CellTemplate>
                             <ItemContainerTemplate>
-                                <TextBlock Text="{Binding NumberOfDeletedFolders}" HorizontalAlignment="Right" />
+                                <TextBlock Text="{Binding NumberOfDeletedFolders, Converter={StaticResource countToStringConverter}}" HorizontalAlignment="Right" />
                             </ItemContainerTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
