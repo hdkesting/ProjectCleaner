@@ -11,6 +11,11 @@
         >
     <Window.Resources>
         <cvt:CountToStringConverter x:Key="countToStringConverter" />
+
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
